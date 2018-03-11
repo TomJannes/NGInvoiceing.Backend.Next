@@ -20,12 +20,12 @@ export class SkuController {
     }
 
     @Post()
-    async create(@Body() skuDto: SkuDto) {
+    async create(@Body() skuDto: SkuDto): Promise<SkuDto> {
         return this.skuService.create(skuDto);
     }
 
     @Put(':skuId')
-    async update(@Param('skuId') skuId: string, @Body() skuDto: SkuDto) {
+    async update(@Param('skuId') skuId: string, @Body() skuDto: SkuDto): Promise<SkuDto> {
         return this.skuService.update(skuId, skuDto);
     }
 
