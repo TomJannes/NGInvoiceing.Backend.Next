@@ -3,18 +3,18 @@ import { ServerResponse } from 'http';
 
 export class QueryHelpers {
     private static handleSorting = function (query, params) {
-        var sortingFieldParam = params['sorting.field'];
-        var sortingCriteriaParam = params['sorting.order'];
-        if (sortingFieldParam !== undefined && sortingCriteriaParam !== undefined) {
+        var sortingFieldParam = params.sorting ? params.sorting.field : null;
+        var sortingCriteriaParam = params.sorting ? params.sorting.order : null;
+        if (sortingFieldParam !== null && sortingCriteriaParam !== null) {
             query = query.sort(sortingCriteriaParam === 'asc' ? sortingFieldParam : `-${sortingFieldParam}`);
         }
         return query;
     }
 
     private static handlePaging = function (query, params) {
-        var currentPageParam = params['pagination.currentPage'];
-        var itemsPerPageParam = params['pagination.itemsPerPage'];
-        if (currentPageParam !== undefined && itemsPerPageParam !== undefined) {
+        var currentPageParam = params.pagination ? params.pagination.currentPage : null;
+        var itemsPerPageParam = params.pagination ? params.pagination.itemsPerPage : null;
+        if (currentPageParam !== null && itemsPerPageParam !== null) {
             var currentPage = parseInt(currentPageParam) - 1;
             var itemsPerPage = parseInt(itemsPerPageParam);
             query = query.skip(currentPage * itemsPerPage).limit(itemsPerPage)
@@ -30,7 +30,6 @@ export class QueryHelpers {
         let query = model.find(searchParams);
         query = this.handleSorting(query, originalParams);
         query = this.handlePaging(query, originalParams);
-        var items = await query.exec();
-        return items;
+        return await query.exec();
     }
 }
