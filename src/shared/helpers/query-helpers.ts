@@ -23,13 +23,18 @@ export class QueryHelpers {
     }
 
     static async find<T extends Document, T1, T2>(model: Model<T>, searchParams: T1, originalParams: T2, res: ServerResponse): Promise<T[]> {
-        let countQuery = model.count(searchParams);
-        var count = await countQuery.exec();
-        res.setHeader('x-total-count', count.toString());
+        try {
+            let countQuery = model.count(searchParams);
+            var count = await countQuery.exec();
+            res.setHeader('x-total-count', count.toString());
 
-        let query = model.find(searchParams);
-        query = this.handleSorting(query, originalParams);
-        query = this.handlePaging(query, originalParams);
-        return await query.exec();
+            let query = model.find(searchParams);
+            query = this.handleSorting(query, originalParams);
+            query = this.handlePaging(query, originalParams);
+            return await query.exec();
+        } catch(err ){
+            var x = err;
+        }
+        
     }
 }

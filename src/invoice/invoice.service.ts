@@ -21,7 +21,7 @@ export class InvoiceService {
     async find(parameters: InvoiceSearchParamsDto, res: ServerResponse): Promise<Invoice[]> {
         var searchParams: any = {};
         if (parameters.number) searchParams.number = parameters.number;
-        if (parameters["customer.name"]) searchParams["customer.name"] = { $regex: new RegExp(`^${parameters["customer.name"]}`, 'i') };
+        if (parameters.customer) searchParams["customer.name"] = { $regex: new RegExp(`^${parameters.customer.name}`, 'i') };
 
         return await QueryHelpers.find(this.invoiceModel, searchParams, parameters, res);
     }
