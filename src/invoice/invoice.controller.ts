@@ -19,6 +19,11 @@ export class InvoiceController {
         return this.invoiceService.findOne(invoiceId);
     }
 
+    @Get('download/:invoiceId')
+    async generateInvoice(@Req() req, @Param('invoiceId') invoiceId: string): Promise<any> {
+        return this.invoiceService.generateInvoice(invoiceId, req.res);
+    }
+
     @Post()
     async create(@Body() invoiceDto: InvoiceDto) {
         return this.invoiceService.create(invoiceDto);

@@ -17,6 +17,7 @@
     "@nestjs/swagger": "^1.1.4",
     "@nestjs/testing": "^4.5.5",
     "@nestjs/websockets": "^4.5.8",
+    "dynamic-html-pdf": "0.0.4",
     "mongoose": "^5.0.7",
     "redis": "^2.7.1",
     "reflect-metadata": "^0.1.12",

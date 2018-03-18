@@ -6,6 +6,7 @@ import { InvoiceStateService } from './invoice-state.service';
 import { InvoiceStateController } from './invoice-state.controller';
 import { InvoiceController } from './invoice.controller';
 import { InvoiceService } from './invoice.service';
+import { ProfileSchema } from '../profile/schema/profile.schema';
 
 
 
@@ -13,7 +14,8 @@ import { InvoiceService } from './invoice.service';
     imports: [
         MongooseModule.forFeature([
             { name: 'Invoice', schema: InvoiceSchema }, 
-            { name: 'InvoiceState', schema: InvoiceStateSchema }
+            { name: 'InvoiceState', schema: InvoiceStateSchema },
+            { name: 'Profile', schema: ProfileSchema}
         ])
     ],
     controllers: [
