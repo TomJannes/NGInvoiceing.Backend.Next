@@ -37,7 +37,7 @@ export class CustomerController {
         }
     }
 
-    @Put(':skuId')
+    @Put(':customerId')
     async update(@Param('customerId') customerId: string, @Body() customerDto: CustomerDto): Promise<CustomerDto> {
         try {
             return await this.customerService.update(customerId, customerDto);

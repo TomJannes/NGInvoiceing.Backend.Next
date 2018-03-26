@@ -49,7 +49,7 @@ export class InvoiceService {
         return dbInvoice;
     }
 
-    async generateInvoice(invoiceId: string, res: Response) {
+    async generateInvoice(invoiceId: string, res: Response): Promise<void> {
         var dbInvoice = await this.invoiceModel.findById(invoiceId).exec();
         var dbProfile = await this.profileModel.find().exec();
         if (!dbInvoice) {
@@ -70,15 +70,15 @@ export class InvoiceService {
             context: {
                 data: {
                     invoice: dbInvoice,
-                    profile: dbProfile
+                    profile: dbProfile[0]
                 }
             }
         };
 
-        var generatedDoc = await pdf.create(document, options);
+        var doc = await pdf.create(document, options);
         res.setHeader('Content-Disposition', 'attachment; filename="' + document.context.data.invoice.number + '.pdf"');
         res.setHeader('Content-type', 'application/pdf');
-        return res.send(generatedDoc);
+        res.send(doc);
     }
 }
 
