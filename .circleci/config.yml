@@ -8,7 +8,7 @@ jobs:
     docker:
       # specify the version you desire here
       - image: circleci/node:7.10
-      
+
     working_directory: ~/repo
 
     steps:
@@ -27,6 +27,24 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
+
+      - run: 
+        name: Transpile typescript
+        command: npm run prestart:prod
+      
+      - run:
+        name: Copy Templates
+        command: "npm run templates:copy" 
         
       # run tests!
       #- run: yarn test
+#  deploy:
+#    steps:
+#      - checkout
+#      - run:
+#        name: Stop process
+#        command: ssh $DROPLET_USER@$DROPLET_IP "pm2 stop main;"
+#      - run:
+#        name: Empty deployment folder
+#        command: ssh $DROPLET_USER@$DROPLET_IP "rm -r ~/node/dist;rm -r ~/node/dist;"
+    
