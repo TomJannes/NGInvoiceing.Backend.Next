@@ -34,7 +34,7 @@ jobs:
       
       - run:
         name: Copy Templates
-        command: "npm run templates:copy" 
+        command: npm run templates:copy 
         
       # run tests!
       #- run: yarn test
