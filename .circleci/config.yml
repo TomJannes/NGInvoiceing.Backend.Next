@@ -54,7 +54,10 @@ jobs:
           ssh $DROPLET_USER@$DROPLET_IP "pm2 stop main;
           rm -r ~/node/dist;
           mkdir -p ~/node/dist;"
-      - run: scp -r ~/repo/dist/* $DROPLET_USER@$DROPLET_IP:~/node/dist;
+      - run: |
+          scp -r ~/repo/dist/* $DROPLET_USER@$DROPLET_IP:~/node/dist;
+          scp -r ~/repo/package.json $DROPLET_USER@$DROPLET_IP:~/node/package.json;
+          npm install;
 #      - checkout
 #      - run: |
 #          ssh $DROPLET_USER@$DROPLET_IP "pm2 stop main;
