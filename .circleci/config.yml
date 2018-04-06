@@ -43,8 +43,8 @@ jobs:
         command: |
           ssh $DROPLET_USER@$DROPLET_IP "pm2 stop main;
           cd ~/node;
-          rm -r ~/dist
-          git pull
+          rm -r ~/dist;
+          git pull;
       
 workflows:
   version: 2
