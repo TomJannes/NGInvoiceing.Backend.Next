@@ -41,10 +41,10 @@ jobs:
       - checkout
       - run:
         command: |
-          ssh $DROPLET_USER@$DROPLET_IP "pm2 stop main;
-          cd ~/node;
-          rm -r ~/dist;
-          git pull;
+          ssh $DROPLET_USER@$DROPLET_IP "pm2 stop main
+          cd ~/node
+          rm -r ~/dist
+          git pull
       
 workflows:
   version: 2
