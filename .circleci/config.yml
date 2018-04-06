@@ -38,8 +38,7 @@ jobs:
       enabled: true
     working_directory: ~/repo
     steps:
-      - run: |
-        scp -r repo/dist/* $DROPLET_USER@$DROPLET_IP:/node/dist;
+      - run: scp -r repo/dist/* $DROPLET_USER@$DROPLET_IP:/node/dist;
 #      - checkout
 #      - run: |
 #          ssh $DROPLET_USER@$DROPLET_IP "pm2 stop main;
