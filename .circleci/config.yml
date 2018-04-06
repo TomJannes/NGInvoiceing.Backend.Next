@@ -52,8 +52,7 @@ jobs:
       - run: npm run templates:copy
       - run: |
           ssh $DROPLET_USER@$DROPLET_IP "pm2 stop main;
-          cd ~/node;
-          rm -r ~/dist;"
+          rm -r ~/node/dist;"
       - run: scp -r ~/repo/dist/* $DROPLET_USER@$DROPLET_IP:~/node/dist;
 #      - checkout
 #      - run: |
