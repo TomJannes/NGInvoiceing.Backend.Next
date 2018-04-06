@@ -28,13 +28,8 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
-      - run: 
-        name: Transpile typescript
-        command: npm run prestart:prod
-      
-      - run:
-        name: Copy Templates
-        command: npm run templates:copy 
+      - run: npm run prestart:prod
+      - run: npm run templates:copy
         
       # run tests!
       #- run: yarn test
