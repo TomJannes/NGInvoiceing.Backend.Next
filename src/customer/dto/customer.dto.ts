@@ -3,6 +3,7 @@ import { ContactDto } from "./contact.dto";
 import { AddressDto } from "../../shared/dto/address.dto";
 import { IsString, ValidateNested, IsNotEmpty, IsArray, IsOptional } from "class-validator";
 import { ApiModelProperty } from "@nestjs/swagger";
+import { SkuDto } from "../../sku/dto/sku.dto";
 
 export class CustomerDto {
     @ApiModelProperty({ required: false })
@@ -33,4 +34,9 @@ export class CustomerDto {
     @ValidateNested()
     @IsArray()
     readonly contacts: ContactDto[];
+
+    @ApiModelProperty({ type: SkuDto, isArray: true, required: false })
+    @ValidateNested()
+    @IsArray()
+    readonly linkedSkus: SkuDto[];
 }
